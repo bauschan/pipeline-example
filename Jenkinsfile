@@ -11,6 +11,10 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Testing..'
+                docker.image('maven:3.3.3-jdk-8').inside {
+                  echo 'Inside Maven'
+                  sh 'mvn -B clean install'
+                }
             }
         }
         stage('Deploy') {
