@@ -10,7 +10,7 @@ pipeline {
       steps {
         parallel(
           "Test": {
-            sh '"echo \"Running ${env.BUILD_ID} on ${env.JENKINS_URL}\" in company ${params.company_parameter}"'
+            sh '"echo "Running ${env.BUILD_ID} on ${env.JENKINS_URL}" in company ${params.company_parameter}"'
             
           },
           "Unix": {
@@ -33,7 +33,7 @@ pipeline {
     }
   }
   environment {
-    GREETINGS_TO = 'Jenkins Techlab'
+    GREETINGS_TO = 'TYPO3 Developer Days 2017'
     JENKINS_URL = 'platform_example'
   }
   parameters {
