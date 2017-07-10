@@ -18,7 +18,7 @@ pipeline {
             
           },
           "Write workspace": {
-            writeFile(file: 'test.txt', text: 'foo')
+            writeFile(file: 'target/test.txt', text: 'foo')
             
           }
         )
