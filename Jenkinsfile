@@ -1,5 +1,10 @@
 pipeline {
-  agent any
+  agent {
+    docker {
+      image 'ubuntu'
+    }
+    
+  }
   stages {
     stage('Build') {
       steps {
@@ -15,6 +20,10 @@ pipeline {
           },
           "Unix": {
             isUnix()
+            
+          },
+          "": {
+            writeFile(file: 'test.txt', text: 'foo')
             
           }
         )
