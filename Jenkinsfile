@@ -4,18 +4,30 @@ pipeline {
     stage('Build') {
       steps {
         echo 'Building..'
-        archiveArtifacts 'workspace'
       }
     }
     stage('Test') {
       steps {
-        sh '"echo "Running ${env.BUILD_ID} on ${env.JENKINS_URL}" in company ${params.company_parameter}"'
+        parallel(
+          "Test": {
+            sh 'echo \'foo\''
+            
+          },
+          "Unix": {
+            isUnix()
+            
+          },
+          "Write workspace": {
+            writeFile(file: 'test.txt', text: 'foo')
+            
+          }
+        )
       }
     }
     stage('Deploy') {
       steps {
         echo '"Hello, ${env.GREETINGS_TO} !"'
-        sh 'echo "Hello, $GREETINGS_TO !"'
+        sh 'echo "Hello, TYPO3 Dev Days 2017 !"'
         script {
           def pipelineType = 'declarative'
           echo "yeah we executed a script within the ${pipelineType} pipeline"
@@ -25,7 +37,6 @@ pipeline {
     }
   }
   environment {
-    GREETINGS_TO = 'Jenkins Techlab'
     JENKINS_URL = 'platform_example'
   }
   parameters {
