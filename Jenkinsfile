@@ -22,7 +22,7 @@ pipeline {
             isUnix()
             
           },
-          "": {
+          "Write workspace": {
             writeFile(file: 'test.txt', text: 'foo')
             
           }
