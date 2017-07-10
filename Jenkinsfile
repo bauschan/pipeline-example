@@ -9,7 +9,7 @@ pipeline {
     }
     stage('Test') {
       steps {
-        sh '"echo \"Running ${env.BUILD_ID} on ${env.JENKINS_URL}\" in company ${params.company_parameter}"'
+        sh '"echo "Running ${env.BUILD_ID} on ${env.JENKINS_URL}" in company ${params.company_parameter}"'
       }
     }
     stage('Deploy') {
@@ -27,7 +27,6 @@ pipeline {
   environment {
     GREETINGS_TO = 'Jenkins Techlab'
     JENKINS_URL = 'platform_example'
-    RVM_HOME = tool('rvm')
   }
   parameters {
     string(name: 'company_parameter', defaultValue: 'dkd', description: 'The company the pipeline runs in')
