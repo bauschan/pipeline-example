@@ -6,7 +6,6 @@ pipeline {
     environment {
             GREETINGS_TO = 'Jenkins Techlab'
             JENKINS_URL = 'platform_example'
-            RVM_HOME = tool('rvm')
         }
     stages {
         stage('Build') {
