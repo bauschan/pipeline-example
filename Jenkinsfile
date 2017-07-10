@@ -26,13 +26,22 @@ pipeline {
     }
     stage('Deploy') {
       steps {
-        echo '"Hello, ${env.GREETINGS_TO} !"'
-        sh 'echo "Hello, TYPO3 Dev Days 2017 !"'
-        script {
-          def pipelineType = 'declarative'
-          echo "yeah we executed a script within the ${pipelineType} pipeline"
-        }
-        
+        parallel(
+          "Deploy": {
+            echo '"Hello, ${env.GREETINGS_TO} !"'
+            sh 'echo "Hello, TYPO3 Dev Days 2017 !"'
+            script {
+              def pipelineType = 'declarative'
+              echo "yeah we executed a script within the ${pipelineType} pipeline"
+            }
+            
+            
+          },
+          "Archive": {
+            archiveArtifacts 'target/*'
+            
+          }
+        )
       }
     }
   }
