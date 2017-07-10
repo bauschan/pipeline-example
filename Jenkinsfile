@@ -23,7 +23,7 @@ pipeline {
     stage('Deploy') {
       steps {
         echo '"Hello, ${env.GREETINGS_TO} !"'
-        sh 'echo "Hello, $GREETINGS_TO !"'
+        sh 'echo "Hello, TYPO3 Dev Days 2017 !"'
         script {
           def pipelineType = 'declarative'
           echo "yeah we executed a script within the ${pipelineType} pipeline"
@@ -33,7 +33,6 @@ pipeline {
     }
   }
   environment {
-    GREETINGS_TO = 'TYPO3 Developer Days 2017'
     JENKINS_URL = 'platform_example'
   }
   parameters {
