@@ -12,14 +12,6 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building..'
-                checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/dkdeploy/example-dkdeploy-typo3-cms']]])
-                sh  """#!/bin/bash
-                    source \${RVM_HOME}/scripts/rvm
-                    rvm use --install 2.3.4
-                    gem list '^bundler\$' -i || gem install bundler
-                    ruby --version
-                    bundle --version
-                """
             }
         }
         stage('Test') {
