@@ -44,6 +44,11 @@ pipeline {
         )
       }
     }
+    stage('Production') {
+      steps {
+        echo 'All done'
+      }
+    }
   }
   environment {
     JENKINS_URL = 'platform_example'
